@@ -174,4 +174,8 @@ def promedio(list[tuple[str,float]])->dict[str,float]:
 
 promedio(["mati",10),("coni",9),("mati",7)])
 
-
+#archivos 
+#archivo = open("onu.txt", "r")  #si están en la misma carpeta solo basta con poner el nombre del archivo y la extension
+#lee = archivo.readline()
+#for i in lee:
+#    print(i)
