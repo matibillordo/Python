@@ -1,4 +1,4 @@
-# Comandos b´asicos de pilas:
+# Comandos basicos de pilas:
 # from queue import LifoQueue as Pila
 # p: Pila[T] = Pila()
 # #crear pila de tipo T
@@ -48,7 +48,7 @@ def mostrar_pila(p: pila[int])->pila[int]:
         p.put(elemento) #dejo la pila p como estaba
         nueva_p.put(elemento2) #creo una copia exacta de p 
 
-#resultado = mostrar_pila(p) muestro elementos 
+#resultado = mostrar_pila(p) # muestro elementos 
 
 # Ejercicio 2. Implementar una solucion para el siguiente problema.
 # problema cantidad_elementos (in p: Pila) : Z {requiere: {True}
@@ -103,8 +103,9 @@ maxElemento = buscar_maximo(p)
 #         asegura: {res es una tupla de p}
 #         asegura: {No hay ning´un elemento en p cuya segunda componente sea mayor que la segunda componente de res }
 def buscarNotaMaxima(p:pila[tuple[str,int]])-> tuple[str,int]:
-    copiaPila:pila[tuple[str,int]]=pila()
+    copiaPilaInvertida:pila[tuple[str,int]]=pila()
     elemento:int=p.get()
+
     while not p.empty():
         nuevo_elemento:int=p.get()
         if elemento[1] <= nuevo_elemento[1]:
@@ -114,50 +115,63 @@ def buscarNotaMaxima(p:pila[tuple[str,int]])-> tuple[str,int]:
 pi = pila()
 pi.put(["mati",7])
 pi.put(["vale",9])
-pi.put(["eze",8])
+pi.put(["irma",97])
 pi.put(["sofi",10])
+#n = buscarNotaMaxima(pi)
+#muestra = mostrar_pila(pi)
 
-n = buscarNotaMaxima(pi)
 # print(n) # descomentar para imprimir
 
-# problema calcular promedio por estudiante (in notas:seq⟨seq⟨Char⟩ × R⟩) : Diccionario ⟨ seq⟨Char⟩, R⟩ {
-# requiere: {El primer componente de las tuplas de notas no es una
-# cadena vac´ıa}
-# requiere: {El segundo componente de las tuplas de notas est´a en el
-# rango [0, 10]}
-# asegura: {Todas las claves de res son nombres que aparecen en
-# notas (primer componente)}
-# asegura: {Todos los nombres de notas (primer componente) son
-# clave en res}
-# asegura: {El valor de cada clave de res es el promedio de todas las notas que obtuvo el estudiante (segunda componente de notas)}
-# }
+#ej 6
+# "3 4 + 5 * 2 -" devuelve 33  
+def sumaPolacaInversa(s:str)->int:
+    p:pila[int]=pila()
+    num:list[str]=["1","2","3","4","5","6","7","8","9","0"]
+    for i in range(len(s)):
 
-#Diccionarios: items(), keys(), values(), pop(clave), clear()
-#def promedioEstudiantes(notas:list[tuple[str,int]]) -> dict[str,float]:
+        if s[i] in num:
+            entero:int= int(s[i])
+            p.put(entero)
+
+        elif s[i] == "+":
+            op:int=p.get() + p.get()
+            p.put(op)
+        elif s[i] == "-":
+            a:int=p.get()
+            b:int=p.get()
+            op:int=-a + b
+            p.put(op)
+        elif s[i] == "*":
+            op:int=p.get() * p.get()
+            p.put(op)
+        elif s[i] == "/":
+            a:int=p.get()
+            b:int=p.get()
+            op:int=b/a
+            p.put(op)
+    return p.get() #con return op funciona tambien?
+
+polaca=sumaPolacaInversa("3 4 + 5 * 2 -")
+#print(polaca)
+
+# Ejercicio 7. Implementar una soluci´on para el siguiente problema.
+# problema intercalar (in p1: Pila, in p2: Pila) : Pila {
+# requiere: {p1 y p2 tienen la misma cantidad de elementos}
+# asegura: {res solo contiene los elementos de p1 y p2}
+# asegura: {res contiene todos los elementos de p1 y p2, intercalados y respetando el orden original}
 
 
-#notas = {[("mati":10),("coni":9)("camilo":8)]}#creo mi diccionario
-#promedioEstudiantes(notas)
+# Diccionarios: items(), keys(), values(), pop(clave), clear()
 
-#print(notas.pop("mati")) #elimina el item con clave mati
+#diccionarioExistente["key"] = valor #para agregar un elemento
 
-#notas["Mati"]= 11 #agregar elemento a notas
 
-#print(notas.items())
-#print(notas.clear()) #elimina todo y muestra none
+# Por ejemplo: notas: list[tuple[str, float]] = [("Sole", 9.5), ("Maxi", 8.0), ("Sole", 9.0)] 
+# calcular promedio por estudiante(notas) debe devolver {"Sole": 9.25, "Maxi": 8.0}
 
-#archivos 
-archivo = open("/home/Estudiante/Descargas/yoTeEsperare.txt", "r")
-#leer = archivo.readline()  
-#print(leer)
-def contar_lineas(nombre:str)->int:
-    leerUnaLinea= nombre.readline()
-    lineas:int = 1
-    while len(leerUnaLinea) != 0:
-        leerUnaLinea = nombre.readline()
-        lineas += 1
-    return lineas
+def promedio(list[tuple[str,float]])->dict[str,float]:
+    for i in range(len()
 
-contar = contar_lineas(archivo)
-print(contar) 
-#corregir porque me toma lineas en blanco, tip es armar una lista con las lineas y eliminar los espacios en blanco
+promedio(["mati",10),("coni",9),("mati",7)])
+
+
