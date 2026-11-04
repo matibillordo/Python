@@ -187,13 +187,37 @@ polaca=sumaPolacaInversa("3 4 + 5 * 2 -")
 
 #diccionarioExistente["key"] = valor #para agregar un elemento
 
-def promedio(promedio:list[tuple[str,float]])->dict[str,float]:
-    for i in range(len(promedio)):
-        print(i)
+def armaLsta(registro:list[tuple[str,float]])->dict[str,list[float]]:
+    separadosPorNombres:dict[str,list[float]]={}
+    
+    for nombre,nota in registro: 
+        if nombre not in separadosPorNombres: #reviso si el primer elemento especificamente su clave está en el diccionario. Como no está agrego su clave con su valor  
+            separadosPorNombres[nombre] = []
+        separadosPorNombres[nombre].append(nota)
 
-promedio([("mati",10),("coni",9),("mati",7)])
 
-promedio(["mati",10),("coni",9),("mati",7)])
+    return separadosPorNombres
+lsta: dict[str,list[float]]= armaLsta([("mati",10),("coni",9),("mati",7),("coni",3)])
+#print(lsta) #devuelve {'mati': [10, 7], 'coni': [9, 3]}
+#print(lsta.values())
+def promedo(lsta:dict[str,list[float]])-> dict[str,float]:
+    prom:dict[str,float]= {}
+    for nombre,notas in lsta.items(): #separo m dcconaro 
+        nota:float=0
+        for j in range(len(notas)):
+            nota+=notas[j]
+        nota= nota/len(notas)
+        prom[nombre] = nota
+    return prom
+res = promedo(lsta)       
+#print(res) 
+print(type(lsta.items()))
+def deempaquetar(d:dict[str,float])->dict[str,float]:
+
+    for nombre,notas in lsta.items(): #para desempaquetar diccionarios
+        print(nombre) #   devuelve   mati
+#                                    coni
+
 
 #archivos 
 #archivo = open("onu.txt", "r")  #si están en la misma carpeta solo basta con poner el nombre del archivo y la extension
