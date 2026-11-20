@@ -217,7 +217,10 @@ def deempaquetar(d:dict[str,float])->dict[str,float]:
     for nombre,notas in lsta.items(): #para desempaquetar diccionarios
         print(nombre) #   devuelve   mati
 #                                    coni
-
+def visitar_sitio(historiales: dict[str, Pila[str]], usuario: str, sitio: str) -> None:
+    if usuario not in historiales: #si el nombre del usuario no es una de las claves del diccionario
+        historiales[usuario] = Pila()    #crea una pila dentro del diccionario historiales dentro de la clave con ese nombre de usario
+    historiales[usuario].put(sitio)     #ya sea que exista o no, le agregamos el valor a la pila 
 
 #archivos 
 #archivo = open("onu.txt", "r")  #si están en la misma carpeta solo basta con poner el nombre del archivo y la extension
