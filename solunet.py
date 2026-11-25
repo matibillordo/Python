@@ -237,3 +237,13 @@ def buscaOnu(stockOnus,reempaqueOnus):
                 print(reempaque)
 
 buscaOnu(camaras,reempaque)
+
+def buscaOnuQueNoEstan(stockOnus, reempaqueOnus):
+    stock_set = set(stockOnus)
+    lis = []
+    for reempaque in reempaqueOnus:
+        if reempaque not in stock_set:
+            lis.append(reempaque)
+            print(reempaque)
+    return lis
+res = buscaOnuQueNoEstan(camarasOnus,onusVerificar)
